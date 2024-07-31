@@ -28,10 +28,10 @@ class HTMLNode:
 
 class LeafNode(HTMLNode):
     def __init__(self, value, tag=None, children=None, props=None):
-        if children != None:
+        if children:
             raise ValueError("Objects of class LeafNode must not have any children.")
         
-        if value == None:
+        if not value:
             raise ValueError("Objects of class LeafNode must have a 'value' defined.")
         
         super().__init__(tag=tag, value=value, children=None, props=props)
@@ -47,3 +47,52 @@ class LeafNode(HTMLNode):
         
         else:
             return f"<{self.tag}>{self.value}</{self.tag}>"
+        
+
+class ParentNode(HTMLNode):
+    def __init__(self, tag, children, value=None, props=None):
+        if not children:
+            raise ValueError("Objects of class ParentNode must have children.")
+        
+        if value:
+            raise ValueError("Objects of class ParentNode cannot take a 'value' argument.")
+        
+        if not tag:
+            raise ValueError("Objects of class ParentNode must have a tag.")
+
+        super().__init__(tag=tag, value=None, children=children, props=props)
+
+
+    def to_html(self):
+        child_obj_string = ""
+        for obj in self.children:
+            child_obj_string += obj.to_html()
+        
+        if self.props:
+            html_prop_str = self.props_to_html()
+            return f"<{self.tag}{html_prop_str}>{child_obj_string}</{self.tag}>"
+        
+        else:
+            return f"<{self.tag}>{child_obj_string}</{self.tag}>"
+        
+
+node = ParentNode(
+    "p",
+    [
+        LeafNode(tag="b", value="Bold text"),
+        LeafNode(tag=None, value="Normal text"),
+        LeafNode(tag="i", value="italic text"),
+        LeafNode(tag=None, value="Normal text"),
+    ],
+)
+
+node2 = ParentNode(
+    tag="p",
+    children=[
+        LeafNode(tag=None, value="Start"),
+        node,
+        LeafNode(tag=None, value="End Wrapper Text")
+    ]
+)
+
+print(node2)
