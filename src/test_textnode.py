@@ -28,5 +28,11 @@ class TestTextNode(unittest.TestCase):
         node2 = TextNode("This is a text node", "italic")
         self.assertNotEqual(node, node2)
 
+    def test_missing_url(self):
+        self.assertRaises(ValueError, TextNode, "This is a text node of type link", "link")
+        self.assertRaises(ValueError, TextNode, "This is a text node of type link", "link", url="")
+        self.assertRaises(ValueError, TextNode, "This is a text node of type image", "image")
+        self.assertRaises(ValueError, TextNode, "This is a text node of type image", "image", url="")
+
 if __name__ == "__main__":
     unittest.main()

@@ -21,7 +21,7 @@ class TestLeafNode(unittest.TestCase):
     def test_no_tag(self):
         leaf = LeafNode(value="This should return as raw text.")
         test_to_html = leaf.to_html()
-        self.assertEquals(leaf.value, test_to_html)
+        self.assertEqual(leaf.value, test_to_html)
 
     def test_props(self):
         leaf = LeafNode(tag="a", value="Click me!", props={"href": "https://www.google.com"})

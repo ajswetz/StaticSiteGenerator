@@ -4,6 +4,10 @@ class TextNode:
         self.text_type = text_type
         self.url = url
 
+        if text_type == "link" or text_type == "image":
+            if not url:
+                raise ValueError(f"Objects with text type {text_type} must have a url defined.")
+
     def __eq__(self, other_TextNode) -> bool:
         if self.text != other_TextNode.text:
             return False

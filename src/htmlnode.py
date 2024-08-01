@@ -31,7 +31,7 @@ class LeafNode(HTMLNode):
         if children:
             raise ValueError("Objects of class LeafNode must not have any children.")
 
-        if not value:
+        if (not value) and (tag != "img"):
             raise ValueError("Objects of class LeafNode must have a 'value' defined.")
 
         super().__init__(tag=tag, value=value, children=None, props=props)
