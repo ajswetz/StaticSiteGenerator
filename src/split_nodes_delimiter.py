@@ -41,36 +41,3 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
 
 
     return new_nodes
-
-plain_text_node = TextNode("This is a plain text node", "text")
-bold_text_node = TextNode("This is a bold text node", "bold")
-italic_text_node = TextNode("This is an italic node", "italic")
-code_text_node = TextNode("print('Hello World')", "code")
-
-nested_node_bold = TextNode("This is a very **bold** text node.", "text")
-nested_node_italic = TextNode("That man was *probably* under the influence.", "text")
-nested_node_code = TextNode("My favorite python code always uses the `class` feature.", "text")
-
-old_nodes = [
-    plain_text_node,
-    bold_text_node,
-    italic_text_node,
-    code_text_node,
-    nested_node_bold,
-    nested_node_italic,
-    nested_node_code
-]
-
-print("=====================")
-print("old nodes:")
-pprint.pprint(old_nodes)
-print("=====================")
-
-new_nodes = split_nodes_delimiter(old_nodes, "**", "bold")
-new_nodes = split_nodes_delimiter(new_nodes, "*", "italic")
-new_nodes = split_nodes_delimiter(new_nodes, "`", "code")
-
-print("=====================")
-print("new nodes:")
-pprint.pprint(new_nodes)
-print("=====================")
