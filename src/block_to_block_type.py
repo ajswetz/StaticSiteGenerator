@@ -8,7 +8,10 @@ def block_to_block_type(markdown_block):
     if len(md_block_lines) == 1:
         heading_match = re.search(r"^#{1,6}\s.", markdown_block)
         if heading_match:
-            block_type = "heading"
+            match_string = heading_match.group()
+            only_hash = match_string.split(" ")[0]
+            hash_count = only_hash.count('#')
+            block_type = f"heading{hash_count}"
             return block_type
 
     #CODE BLOCKS - Start and end with '```'

@@ -6,27 +6,27 @@ class TestBlockToBlockType(unittest.TestCase):
     def test_heading(self):
         test_heading = "# This is my heading"
         block_type = block_to_block_type(test_heading)
-        self.assertEqual(block_type, "heading")
+        self.assertEqual(block_type, "heading1")
 
         test_heading = "## This is my heading"
         block_type = block_to_block_type(test_heading)
-        self.assertEqual(block_type, "heading")
+        self.assertEqual(block_type, "heading2")
 
         test_heading = "### This is my heading"
         block_type = block_to_block_type(test_heading)
-        self.assertEqual(block_type, "heading")
+        self.assertEqual(block_type, "heading3")
 
         test_heading = "#### This is my heading"
         block_type = block_to_block_type(test_heading)
-        self.assertEqual(block_type, "heading")
+        self.assertEqual(block_type, "heading4")
 
         test_heading = "##### This is my heading"
         block_type = block_to_block_type(test_heading)
-        self.assertEqual(block_type, "heading")
+        self.assertEqual(block_type, "heading5")
 
         test_heading = "###### This is my heading"
         block_type = block_to_block_type(test_heading)
-        self.assertEqual(block_type, "heading")
+        self.assertEqual(block_type, "heading6")
 
         #This example uses 7 '#' characters, which is invalid.
         #Should be block_type "paragraph"
