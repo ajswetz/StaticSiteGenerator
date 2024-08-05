@@ -4,6 +4,8 @@ from textnodetohtmlnode import *
 from block_to_block_type import *
 from markdown_to_blocks import *
 from text_to_textnodes import *
+from remove_markdown_tags import *
+from block_type_to_parent_tag import *
 
 ### Assignment
 
@@ -30,30 +32,30 @@ from text_to_textnodes import *
 
 def markdown_to_html_node(markdown):
 
-    # 1. Split the markdown into blocks (you already have a function for this)
     markdown_blocks = markdown_to_blocks(markdown)
 
-    # 2. Loop over each block:
     all_parent_nodes = []
 
     for block in markdown_blocks:
-        # a. Determine the type of block (you already have a function for this)
         block_type = block_to_block_type(block)
+        block_no_tags = remove_markdown_tags(block, block_type)
+        text_nodes = text_to_textnodes(block_no_tags)
 
-        # b. Based on the type of block, create a new HTMLNode with the proper data
+        html_child_nodes = []
+        for text_node in text_nodes:
+            html_node = text_node_to_html_node(text_node)
+            html_child_nodes.append(html_node)
 
-        # I think each block should turn into one Parent HTML Node with children
-        # Each block type will get a certain variety of Parent
-        # Probably then need to strip the Markdown formatting tags
-        # Then, turn the remainder of the block into Leaf HTML nodes
+        # Need to figure out how to wrap the ordered / unordered lists with the <ol> / <ul> tags
+        # Also need to figure out what to do about code block types - they need a <pre> tag too
+
+        #Build Parent Node
+        parent_tag = block_type_to_parent_tag(block_type)
+        parent_node = ParentNode(tag=parent_tag, children=html_child_nodes)
+        all_parent_nodes.append(parent_node)
 
 
-
-
-
-    #     c. Assign the proper child HTMLNode objects to the block node. I created
-    #         a shared text_to_children(text) function that works for all block types.
-    #         It takes a string of text and returns a list of HTMLNodes that represent
-    #         the inline markdown using previously created functions (think TextNode -> HTMLNode).
     # 3. Make all the block nodes children under a single parent HTML node
-    #     (which should just be a div) and return it.
+    #    (which should just be a div) and return it.
+    top_parent_node = ParentNode(tag="div", children=all_parent_nodes)
+    return top_parent_node
