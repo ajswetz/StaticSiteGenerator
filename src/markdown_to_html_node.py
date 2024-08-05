@@ -1,12 +1,8 @@
 from htmlnode import *
-from textnode import *
-from textnodetohtmlnode import *
-from block_to_block_type import *
 from markdown_to_blocks import *
-from text_to_textnodes import *
-from remove_markdown_tags import *
-from block_type_to_parent_tag import *
+from block_to_block_type import *
 from block_to_html_children import *
+from block_type_to_parent_tag import *
 
 
 def markdown_to_html_node(markdown):
