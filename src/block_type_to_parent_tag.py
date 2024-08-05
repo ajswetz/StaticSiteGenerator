@@ -22,7 +22,7 @@ def block_type_to_parent_tag(block_type):
             return "blockquote"
 
         case "code":
-            return "code"
+            return "pre"
 
         case "unordered_list":
             return "ul"
