@@ -37,16 +37,3 @@ def markdown_to_html_node(markdown):
     #(which should just be a div) and return it.
     top_parent_node = ParentNode(tag="div", children=all_parent_nodes)
     return top_parent_node
-
-
-### TESTING / DEBUGGING ###
-
-with open("content/index.md") as file:
-    raw_markdown = file.read()
-
-# with open("content/code_block_md_test.md") as file:
-#     raw_markdown = file.read()
-
-html_node = markdown_to_html_node(raw_markdown)
-
-print(html_node.to_html())
