@@ -52,6 +52,11 @@ def markdown_to_html_node(markdown):
         #Build Parent Node
         parent_tag = block_type_to_parent_tag(block_type)
         parent_node = ParentNode(tag=parent_tag, children=html_child_nodes)
+
+        if block_type == "code":
+            pre_parent_node = ParentNode(tag="pre", children=parent_node)
+            all_parent_nodes.append(pre_parent_node)
+
         all_parent_nodes.append(parent_node)
 
 
