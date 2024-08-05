@@ -1,3 +1,10 @@
+#### .gitignore SPECIFIC TO THIS PROJECT ####
+
+public/
+
+
+##### STUFF BELOW IS FROM PYTHON TEMPLATE .gitignore FROM GITHUB #####
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
