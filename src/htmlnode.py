@@ -18,12 +18,7 @@ class HTMLNode:
             raise Exception("This object's 'props' attribute is blank.")
 
     def __repr__(self) -> str:
-        return f'''Printing HTMLNode Object:
-            tag: {self.tag}
-            value: {self.value}
-            children: {self.children}
-            props: {self.props}
-            '''
+        raise NotImplementedError
 
 
 class LeafNode(HTMLNode):
@@ -48,6 +43,13 @@ class LeafNode(HTMLNode):
         else:
             return f"<{self.tag}>{self.value}</{self.tag}>"
 
+    def __repr__(self) -> str:
+        return f'''Leaf Node:
+            tag: {self.tag}
+            value: {self.value}
+            children: {self.children}
+            props: {self.props}
+            '''
 
 class ParentNode(HTMLNode):
     def __init__(self, tag, children, value=None, props=None):
@@ -74,3 +76,11 @@ class ParentNode(HTMLNode):
 
         else:
             return f"<{self.tag}>{child_obj_string}</{self.tag}>"
+        
+    def __repr__(self) -> str:
+        return f'''Parent Node:
+            tag: {self.tag}
+            value: {self.value}
+            children: {self.children}
+            props: {self.props}
+            '''
