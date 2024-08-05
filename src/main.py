@@ -1,8 +1,9 @@
-from textnode import TextNode
+from copy_static_to_public_recursively import *
 
 def main():
-    my_TextNode = TextNode("Testing text node", "italic", "https://me.com")
+    
+    copy_static_to_public()
 
-    print(my_TextNode)
+
 
 main()
